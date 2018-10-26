@@ -1,4 +1,4 @@
-package aula011;
+package construtores;
 
 public class Bolsista extends Aluno {
     
