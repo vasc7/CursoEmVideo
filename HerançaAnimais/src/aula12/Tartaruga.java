@@ -7,7 +7,7 @@ package aula12;
 
 /**
  *
- * @author vasco
+ * @author vasconcelos
  */
 public class Tartaruga extends Reptil {
         
