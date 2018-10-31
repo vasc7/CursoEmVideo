@@ -5,53 +5,18 @@
  */
 package mega;
 
+import java.util.Arrays;
 import java.util.Random;
+import javax.swing.JTextField;
 
 /**
  *
- * @author vasco
+ * @author Rafael Vasconcelos
  */
 public class Mega_Tela extends javax.swing.JFrame {
-    
-    
-    public int geraN1(){
-        double n1 = Math.random();
-        int al1 = (int) (2 + n1 * 60 -1);
-        return al1;
-    }
-    
-    public int geraN2(){
-        double n2 = Math.random();
-        int al2 = (int) (2 + n2 * 60 - 1);
-        return al2;
-    }
-    
-    public int geraN3(){
-        double n3 = Math.random();
-        int al3 = (int) (2 + n3 * 60 -1);
-        return al3;
-    }
-    
-    public int geraN4(){
-        double n4 = Math.random();
-        int al4 = (int) (2 + n4 * 60 - 1);
-        return al4;
-    }
-    
-    public int geraN5(){
-        double n5 = Math.random();
-        int al5 = (int) (2 + n5 * 60 -1);
-        return al5;
-    }
-    
-    public int geraN6(){
-        double n6 = Math.random();
-        int al6 = (int) (2 + n6 * 60 - 1);
-        return al6;
-    }
-    
 
     public Mega_Tela() {
+
         initComponents();
     }
 
@@ -64,7 +29,7 @@ public class Mega_Tela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnSort = new javax.swing.JButton();
         txtN1 = new javax.swing.JTextField();
         txtN2 = new javax.swing.JTextField();
         txtN3 = new javax.swing.JTextField();
@@ -73,11 +38,12 @@ public class Mega_Tela extends javax.swing.JFrame {
         txtN6 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jButton1.setText("Sortear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSort.setText("Sortear");
+        btnSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSortActionPerformed(evt);
             }
         });
 
@@ -96,7 +62,7 @@ public class Mega_Tela extends javax.swing.JFrame {
                         .addComponent(txtN3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtN4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(txtN5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -115,21 +81,36 @@ public class Mega_Tela extends javax.swing.JFrame {
                     .addComponent(txtN5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtN6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnSort)
                 .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    txtN1.setText(Integer.toString(geraN1()));
-    txtN2.setText(Integer.toString(geraN2()));
-    txtN3.setText(Integer.toString(geraN3()));
-    txtN4.setText(Integer.toString(geraN4()));
-    txtN5.setText(Integer.toString(geraN5()));
-    txtN6.setText(Integer.toString(geraN6()));    
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
+        int num; // declaração de varável do tipo inteiro para receber o valor aleatório
+        Random rand = new Random(); // Criação do objeto Random (gera valor aleatório)
+        int vetor[] = new int[6]; // Declaração do vetor de 7 posições com valores do tipo inteiro
+        for (int x = 0; x < vetor.length; x++) { // loop para gerar 6 números aleatórios
+            num = rand.nextInt(60) + 1; // a variável 'num' recebe o número gerado pelo objeto Random
+            for (int y = 0; y < vetor.length; y++) { // loop que verifica se os números gerados são iguais
+                if (num == vetor[y] && y != x) {
+                    num = rand.nextInt(60) + 1;
+                } else {
+                    vetor[x] = num;
+
+                }
+            }
+        }
+        Arrays.sort(vetor); //ordenar os valores do vetor
+        txtN1.setText(Integer.toString(vetor[0])); //O objeto txtN1 receberá o valor da posição 0 do vetor e assim por diante!
+        txtN2.setText(Integer.toString(vetor[1]));
+        txtN3.setText(Integer.toString(vetor[2]));
+        txtN4.setText(Integer.toString(vetor[3]));
+        txtN5.setText(Integer.toString(vetor[4]));
+        txtN6.setText(Integer.toString(vetor[5]));
+    }//GEN-LAST:event_btnSortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +148,7 @@ public class Mega_Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSort;
     private javax.swing.JTextField txtN1;
     private javax.swing.JTextField txtN2;
     private javax.swing.JTextField txtN3;
